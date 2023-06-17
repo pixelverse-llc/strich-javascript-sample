@@ -27,3 +27,6 @@ connecting using the self-signed certificate:
 ```shell
 $ python3 serve_https.py tls_key.pem tls_cert.pem
 ```
+
+Another popular option is to serve the application locally and expose it
+via ngrok, with an automatically created TLS certificate and public DNS.
