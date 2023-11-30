@@ -1,4 +1,4 @@
-import {StrichSDK, BarcodeReader} from "./strich.js";
+import {StrichSDK, BarcodeReader} from "https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.3.4";
 
 /**
  * Add detected code to DOM
@@ -23,7 +23,7 @@ function initializeBarcodeReader() {
             ],
             numScanlines: 15,
             minScanlinesNeeded: 2,
-            duplicateInterval: 2500
+            duplicateInterval: 1500
         },
         locator: {
             regionOfInterest: {

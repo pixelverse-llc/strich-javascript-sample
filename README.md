@@ -1,15 +1,15 @@
 # STRICH SDK integration example using plain JavaScript/HTML/CSS
 
 This repository shows how to use the STRICH SDK to create a barcode scanning
-application with just plain JavaScript, HTML and CSS, without using any
+application with just plain JavaScript (ES6), HTML and CSS, without using any
 framework or build tooling.
 
-## Obtaining strich.js
+The app is configured to read common 1D barcodes.
 
-Normally you obtain STRICH by installing from NPM. For this barebones example,
-we are not using Node.js/NPM at all, so you can copy the file
-`node_modules/@pixelverse/strichjs-sdk/dist/strich.js` from an NPM project
-and store it in this directory.
+## Obtaining STRICH
+
+Typically, you will obtain STRICH by installing from NPM. For this example, we
+are importing  the SDK as an ES6 module from a CDN.
 
 ## Serving from a secure origin
 
@@ -29,4 +29,5 @@ $ python3 serve_https.py tls_key.pem tls_cert.pem
 ```
 
 Another popular option is to serve the application locally and expose it
-via ngrok, with an automatically created TLS certificate and public DNS.
+via [ngrok](https://ngrok.com) or similar tools, with an automatically created TLS certificate
+and public DNS.
