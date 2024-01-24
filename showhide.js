@@ -1,4 +1,4 @@
-import {StrichSDK, BarcodeReader} from "./strich.js";
+import {StrichSDK, BarcodeReader} from "https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.4.0";
 
 // the BarcodeReader configuration
 let configuration = {
@@ -56,16 +56,18 @@ button.onclick = () => {
  * @param value The scanned value or null if the user cancelled.
  */
 function stopScanning(value) {
-    barcodeReader.stop();
-    barcodeReader.destroy();
-    barcodeReader = null;
-    hostElement.style.display = 'none';
-    if (value) {
-        prompt.innerText = 'Scanned barcode: ' + value;
-    } else {
-        prompt.innerText = 'Stopped scanning before an item was scanned';
-    }
-    button.innerText = 'Start scanning';
+    barcodeReader.stop().then(() => {
+        return barcodeReader.destroy();
+    }).then(() => {
+        barcodeReader = null;
+        hostElement.style.display = 'none';
+        if (value) {
+            prompt.innerText = 'Scanned barcode: ' + value;
+        } else {
+            prompt.innerText = 'Stopped scanning before an item was scanned';
+        }
+        button.innerText = 'Start scanning';
+    });
 }
 
 /**
