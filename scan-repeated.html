@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Repeated Scans</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- common styles -->
+    <link rel="stylesheet" type="text/css" href="common.css"/>
+
+    <!-- page-specific style -->
+    <style>
+        dialog {
+            margin: auto;
+        }
+        .button-bar {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<main class="wrapper">
+    <header class="top-bar">
+        <h3>Repeated Scans</h3>
+        <a href="/">EXIT</a>
+    </header>
+
+    <div class="barcode-scanner">
+        <!-- BarcodeReader will live here -->
+    </div>
+</main>
+
+<dialog id="confirmScanDialog">
+    <p>You have scanned <span id="numScanned"></span> barcodes.</p>
+    <p>Scanned code: <b id="scannedCode"></b></p>
+
+    <div class="button-bar">
+        <button id="continueScanning">CONTINUE</button>
+        <button id="finishScanning">FINISH</button>
+    </div>
+</dialog>
+
+
+<script type="module" src="scan-repeated.js"></script>
+</body>
+</html>

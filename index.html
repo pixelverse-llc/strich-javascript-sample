@@ -1,21 +1,45 @@
 <html lang="en">
 <head>
-    <title>Plain JavaScript STRICH SDK integration sample</title>
-    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <meta charset="UTF-8">
+    <title>Vanilla JS STRICH Sample</title>
+    <link rel="stylesheet" type="text/css" href="common.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        main {
+           padding: 16px;
+        }
+        section {
+            margin-top: 16px;
+        }
+        #lastScannedCodeValue {
+            font-family: monospace;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="scanner">
-        <!-- STRICH BarcodeReader will live here -->
-    </div>
-    <section id="results">
-        <!-- results will be added here -->
-    </section>
-</div>
+<main>
+    <header><h2>STRICH Vanilla JS Sample</h2></header>
+    <p>Enabled symbologies: <b>Code 128, QR</b>.</p>
+    <p id="lastScannedCode">Last scanned code: <span id="lastScannedCodeValue"></span></p>
+    <section>
+        <header><h3>Single Scan</h3></header>
+        <p>Scan a single barcode and return here.</p>
 
-<!-- Your code -->
-<script type="module" src="main.js"></script>
+        <a href="scan-single.html">Start Single</a>
+    </section>
+    <section>
+        <header><h3>Repeated Scans</h3></header>
+        <p>Repeatedly scan barcodes, pausing and resuming the scanner until done.</p>
+        <a href="scan-repeated.html">Start Repeated</a>
+    </section>
+    <section>
+        <header><h3>Multiple Scans</h3></header>
+        <p>Scan continuously until a number of distinct barcodes are scanned.</p>
+        <a href="scan-multiple.html">Start Multiple</a>
+    </section>
+</main>
+
+<script type="module" src="index.js"></script>
 </body>
 </html>

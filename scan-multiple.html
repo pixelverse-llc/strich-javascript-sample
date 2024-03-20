@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiple Scans</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- common styles -->
+    <link rel="stylesheet" type="text/css" href="common.css"/>
+
+    <!-- page-specific style -->
+    <style>
+        .barcode-grid {
+            display: grid;
+            padding: 8px;
+            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        button {
+            width: auto;
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<main class="wrapper">
+    <header class="top-bar">
+        <h3>Multiple Scans</h3>
+        <a href="/">EXIT</a>
+    </header>
+
+    <div class="barcode-scanner">
+        <!-- BarcodeReader will live here -->
+    </div>
+
+    <section class="barcode-grid">
+        <div id="scannedCode0">-</div>
+        <div id="scannedCode1">-</div>
+        <div id="scannedCode2">-</div>
+        <div id="scannedCode3">-</div>
+    </section>
+
+    <button id="finishScanning" disabled>FINISH SCANNING</button>
+</main>
+
+<script type="module" src="scan-multiple.js"></script>
+</body>
+</html>
