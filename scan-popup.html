@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>STRICH Popup Scanner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- common styles -->
+    <link rel="stylesheet" type="text/css" href="common.css"/>
+
+    <!-- page-specific style -->
+    <style>
+        section {
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<main class="wrapper">
+    <header class="top-bar">
+        <h3>STRICH Popup Scanner</h3>
+        <a href="/">EXIT</a>
+    </header>
+
+    <section class="intro">
+        This sample demonstrates the use of the STRICH SDK popup barcode scanner.
+    </section>
+
+    <section>
+        <h3>Scan single barcode</h3>
+        <div>
+            <label for="serial">Serial number (14 chars)</label>
+        </div>
+        <div class="input-col">
+            <input type="text" id="serial" name="serial" pattern="[A-Z0-9\-_\/]{14}">
+            <button id="scan_serial" data-input="serial">Scan</button>
+        </div>
+
+        <div style="margin-top: 10px">
+            <label for="mac">MAC address (AA:BB:CC:DD:EE:FF)</label>
+        </div>
+        <div class="input-col">
+            <input type="text" id="mac" name="mac" pattern="[A-Z0-9]{2}:[A-Z0-9]{2}:[A-Z0-9]{2}:[A-Z0-9]{2}:[A-Z0-9]{2}:[A-Z0-9]{2}">
+            <button id="scan_mac" data-input="mac">Scan</button>
+        </div>
+
+        <div style="margin-top: 10px">
+            <label for="imei">IMEI (15-17 digits)</label>
+        </div>
+        <div class="input-col">
+            <input type="number" id="imei" name="imei" pattern="\d{15,17}">
+            <button id="scan_imei" data-input="imei">Scan</button>
+        </div>
+    </section>
+
+    <section>
+        <h3>Scan all barcodes</h3>
+        <p>Scan until all barcodes are scanned.</p>
+        <button id="scan_all">Scan All</button>
+    </section>
+</main>
+
+<script type="module">
+    import {StrichSDK, PopupScanner} from "https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.6.0";
+
+    try {
+        await StrichSDK.initialize('<your license key>');
+    } catch (err) {
+        alert(err.message);
+    }
+
+    // MAC: 6 pairs of alphanumeric characters, separated by colons: AB:CD:12:34:EF:AD
+    document.getElementById('scan_mac').onclick = async () => {
+        const pattern = document.getElementById('mac').pattern;
+        const cfg = {
+            symbologies: [{ name: 'code128', 'minLen': 17, 'maxLen': 17}],
+            detectionHandler: (detections) => {
+                return detections.some(d => d.data.match(pattern));
+            },
+            labels: {
+                title: 'Scan MAC Address'
+            }
+        };
+        const detections = await PopupScanner.scan(cfg);
+        if (detections) {
+            document.getElementById('mac').value = detections.find(d => d.data.match(pattern)).data;
+        }
+    }
+
+    // IMEI: 15 to 17 digits
+    document.getElementById('scan_imei').onclick = async () => {
+        const pattern = document.getElementById('imei').pattern;
+        const cfg = {
+            symbologies: [{ name: 'code128', 'minLen': 15, 'maxLen': 17}],
+            detectionHandler: (detections) => {
+                return detections.some(d => d.data.match(pattern));
+            },
+            labels: {
+                title: 'Scan IMEI'
+            }
+        };
+        const detections = await PopupScanner.scan(cfg);
+        if (detections) {
+            document.getElementById('imei').value = detections.find(d => d.data.match(pattern)).data;
+        }
+    }
+
+    // serial number: 15 characters, at least one non-digit (enforced programmatically)
+    document.getElementById('scan_serial').onclick = async () => {
+        const pattern = document.getElementById('serial').pattern;
+        const cfg = {
+            symbologies: [{ name: 'code128', 'minLen': 15, 'maxLen': 15}],
+            detectionHandler: (detections) => detections.some(d => d.data.match(pattern) && d.data.match('[A-Z]'))
+        };
+        const detections = await PopupScanner.scan(cfg);
+        if (detections) {
+            document.getElementById('serial').value = detections.find(d => d.data.match(pattern) && d.data.match('[A-Z]')).data;
+        }
+    }
+
+    document.getElementById('scan_all').onclick = async () => {
+        let codes = {
+            imei: undefined, serial: undefined, mac: undefined
+        }
+        await PopupScanner.scan({
+            symbologies: [{ name: 'code128', 'minLen': 15, 'maxLen': 17}],
+            detectionHandler: (detections) => {
+                if (!codes.mac) {
+                    const pattern = document.getElementById('mac').pattern;
+                    const detection = detections.find(d => d.data.match(pattern));
+                    if (detection) {
+                        codes.mac = detection.data;
+                    }
+                }
+                if (!codes.serial) {
+                    const pattern = document.getElementById('serial').pattern;
+                    const detection = detections.find(d => d.data.match(pattern) && d.data.match('[A-Z]'));
+                    if (detection) {
+                        codes.serial = detection.data;
+                    }
+                }
+                if (!codes.imei) {
+                    const pattern = document.getElementById('imei').pattern;
+                    const detection = detections.find(d => d.data.match(pattern));
+                    if (detection) {
+                        codes.imei = detection.data;
+                    }
+                }
+
+                // we're done if we have all three fields
+                return codes.mac && codes.imei && codes.serial;
+            }
+        });
+
+        document.getElementById('mac').value = codes.mac;
+        document.getElementById('serial').value = codes.serial;
+        document.getElementById('imei').value = codes.imei;
+    }
+</script>
+
+</body>
+</html>
