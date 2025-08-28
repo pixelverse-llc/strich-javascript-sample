@@ -1,8 +1,8 @@
 /**
  * Import STRICH SDK via ES6 import clause. It is recommended to pin a specific version, especially for
- * business-critical applications.
+ * business-critical applications. Otherwise you can use 'latest' as the version specifier.
  */
-import {StrichSDK, BarcodeReader} from "https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.9.2";
+import {StrichSDK, BarcodeReader} from "https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.10.0";
 
 /**
  * Store the scanned code in the session storage and return to the home page.

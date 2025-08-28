@@ -63,7 +63,11 @@
 </main>
 
 <script type="module">
-    import {StrichSDK, PopupScanner} from "https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.9.2";
+    /**
+     * Import STRICH SDK via ES6 import clause. It is recommended to pin a specific version, especially for
+     * business-critical applications.
+     */
+    import {StrichSDK, PopupScanner} from "https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.10.0";
 
     try {
         await StrichSDK.initialize('<your license key>');
