@@ -4,6 +4,7 @@ This repository shows how to use the STRICH SDK to create a barcode scanning app
 
 The app implements three basic scanning workflows that are popular in real-world use cases:
 
+- Popup scanner: scans a single barcode using the built-in [PopupScanner](https://docs.strich.io/the-popup-scanner.html) integration.
 - Single scan: scans a single barcode and returns the home screen
 - Repeated scans: scans barcodes repeatedly, with a user interaction between scans
 - Multiple scans: scans multiple barcodes until some condition is met
