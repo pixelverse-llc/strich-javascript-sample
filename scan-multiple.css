@@ -1,0 +1,40 @@
+/* the host element for a BarcodeReader needs to have position: relative */
+.host-element {
+    position: relative;
+    background-color: black;
+    flex-grow: 1;
+}
+
+/* supplemental styles (not important) */
+body, html {
+    font-family: sans-serif;
+    height: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+header {
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.barcode-grid {
+    display: grid;
+    padding: 8px;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+button {
+    width: auto;
+    margin: 10px;
+    padding: 10px;
+}

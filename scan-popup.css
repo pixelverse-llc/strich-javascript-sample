@@ -1,0 +1,25 @@
+/* supplemental styles (not important) */
+body, html {
+    font-family: sans-serif;
+    height: 100%;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main {
+    padding: 1rem;
+}
+
+label {
+    display: block;
+    margin-top: 0.5rem;
+}
+
+h2 {
+    margin-top: 1rem;
+}

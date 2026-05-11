@@ -2,16 +2,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Vanilla JS STRICH Sample</title>
-    <link rel="stylesheet" type="text/css" href="common.css"/>
+    <link rel="stylesheet" type="text/css" href="reset.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
         main {
-           padding: 16px;
+            padding: 16px;
         }
-        section {
-            margin-top: 16px;
-        }
-        #lastScannedCodeValue {
+        .barcode-value {
             font-family: monospace;
         }
     </style>
@@ -19,32 +16,36 @@
 <body>
 
 <main>
-    <header><h2>STRICH Vanilla JS Sample</h2></header>
+    <h1>STRICH Vanilla JS Sample</h1>
     <p>Enabled symbologies: <b>Code 128, QR</b>.</p>
-    <p id="lastScannedCode">Last scanned code: <span id="lastScannedCodeValue"></span></p>
-    <section>
-        <header><h3>Single Scan</h3></header>
-        <p>Scan a single barcode and return here.</p>
+    <p id="lastScannedCode">Last scanned code: <span class="barcode-value"></span></p>
 
-        <a href="scan-single.html">Start Single</a>
-    </section>
-    <section>
-        <header><h3>Repeated Scans</h3></header>
-        <p>Repeatedly scan barcodes, pausing and resuming the scanner until done.</p>
-        <a href="scan-repeated.html">Start Repeated</a>
-    </section>
-    <section>
-        <header><h3>Multiple Scans</h3></header>
-        <p>Scan continuously until a number of distinct barcodes are scanned.</p>
-        <a href="scan-multiple.html">Start Multiple</a>
-    </section>
-    <section>
-        <header><h3>Popup Scanner</h3></header>
-        <p>Scan using the popup scanner's built-in UI.</p>
-        <a href="scan-popup.html">Start Popup</a>
-    </section>
+    <h2>Single Scan</h2>
+    <p>Scan a single barcode and return here.</p>
+    <a href="scan-single.html">Start Single</a>
+
+    <h2>Repeated Scans</h2>
+    <p>Repeatedly scan barcodes, pausing and resuming the scanner until done.</p>
+    <a href="scan-repeated.html">Start Repeated</a>
+
+    <h2>Multiple Scans</h2>
+    <p>Scan continuously until a number of distinct barcodes are scanned.</p>
+    <a href="scan-multiple.html">Start Multiple</a>
+
+    <h2>Popup Scanner</h2>
+    <p>Scan using the popup scanner's built-in UI.</p>
+    <a href="scan-popup.html">Start Popup</a>
 </main>
 
-<script type="module" src="index.js"></script>
+<script type="module">
+// show the previously scanned code from 'Single Scan', if available
+const scannedCode = sessionStorage.getItem('scannedCode');
+if (scannedCode === null) {
+    document.querySelector('.barcode-value').style.display = 'none';
+} else {
+    document.querySelector('.barcode-value').style.display = 'block';
+    document.querySelector('.barcode-value').innerText = scannedCode;
+}
+</script>
 </body>
 </html>

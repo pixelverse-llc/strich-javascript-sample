@@ -4,45 +4,30 @@
     <meta charset="UTF-8">
     <title>Multiple Scans</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <!-- common styles -->
-    <link rel="stylesheet" type="text/css" href="common.css"/>
-
-    <!-- page-specific style -->
-    <style>
-        .barcode-grid {
-            display: grid;
-            padding: 8px;
-            gap: 20px;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-        }
-
-        button {
-            width: auto;
-            margin: 10px;
-            padding: 10px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="reset.css"/>
+    <link rel="stylesheet" type="text/css" href="scan-multiple.css"/>
 </head>
 <body>
 
-<main class="wrapper">
-    <header class="top-bar">
-        <h3>Multiple Scans</h3>
+<main>
+    <header>
+        <h1>Multiple Scans</h1>
         <a href="/">EXIT</a>
     </header>
 
-    <div class="barcode-scanner">
+    <p>This example illustrates scanning four distinct Code 128 barcodes or QR Codes. Scanning stops when all
+        four codes are scanned.</p>
+
+    <div class="host-element">
         <!-- BarcodeReader will live here -->
     </div>
 
-    <section class="barcode-grid">
-        <div id="scannedCode0">-</div>
-        <div id="scannedCode1">-</div>
-        <div id="scannedCode2">-</div>
-        <div id="scannedCode3">-</div>
-    </section>
+    <div class="barcode-grid">
+        <output id="scannedCode0">-</output>
+        <output id="scannedCode1">-</output>
+        <output id="scannedCode2">-</output>
+        <output id="scannedCode3">-</output>
+    </div>
 
     <button id="finishScanning" disabled>FINISH SCANNING</button>
 </main>

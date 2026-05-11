@@ -5,18 +5,21 @@
     <title>Scan Single Barcode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- common styles -->
-    <link rel="stylesheet" type="text/css" href="common.css"/>
+    <link rel="stylesheet" type="text/css" href="reset.css"/>
+    <link rel="stylesheet" type="text/css" href="scan-single.css"/>
 </head>
 <body>
 
-<main class="wrapper">
-    <header class="top-bar">
+<main>
+    <header>
         <h3>Single Barcode Scan</h3>
         <a href="/">EXIT</a>
     </header>
 
-    <div class="barcode-scanner">
+    <p>This example illustrates scanning a single Code 128 barcode or QR Code. The page navigates back to the entry
+        once the barcode is scanned.</p>
+
+    <div class="host-element">
         <!-- BarcodeReader will live here -->
     </div>
 </main>

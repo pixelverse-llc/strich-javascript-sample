@@ -4,32 +4,18 @@
     <meta charset="UTF-8">
     <title>Repeated Scans</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <!-- common styles -->
-    <link rel="stylesheet" type="text/css" href="common.css"/>
-
-    <!-- page-specific style -->
-    <style>
-        dialog {
-            margin: auto;
-        }
-        .button-bar {
-            margin-top: 8px;
-            display: flex;
-            flex-direction: row;
-            gap: 8px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="reset.css"/>
+    <link rel="stylesheet" type="text/css" href="scan-repeated.css"/>
 </head>
 <body>
 
 <main class="wrapper">
-    <header class="top-bar">
-        <h3>Repeated Scans</h3>
+    <header>
+        <h1>Repeated Scans</h1>
         <a href="/">EXIT</a>
     </header>
 
-    <div class="barcode-scanner">
+    <div class="host-element">
         <!-- BarcodeReader will live here -->
     </div>
 </main>
@@ -43,7 +29,6 @@
         <button id="finishScanning">FINISH</button>
     </div>
 </dialog>
-
 
 <script type="module" src="scan-repeated.js"></script>
 </body>

@@ -2,7 +2,7 @@
  * Import STRICH SDK via ES6 import clause. It is recommended to pin a specific version, especially for
  * business-critical applications.
  */
-import {StrichSDK, BarcodeReader} from "https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.14.0";
+import {StrichSDK, BarcodeReader} from "https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.15.0";
 
 let theBarcodeReader = null;
 
@@ -23,7 +23,7 @@ function handleCodeDetection(codeDetection) {
     if (numScannedCodes < 4 && scannedCodes.indexOf(codeDetection.data) === -1) {
         scannedCodes[numScannedCodes] = codeDetection.data;
         sessionStorage.setItem('scannedCode', codeDetection.data);
-        document.getElementById('scannedCode' + numScannedCodes).innerText = codeDetection.data;
+        document.querySelector(`#scannedCode${numScannedCodes}`).innerText = codeDetection.data;
         numScannedCodes++;
 
         // stop barcode detection when we have all the codes we need
@@ -41,7 +41,7 @@ async function initializeBarcodeReader() {
 
     // see https://docs.strich.io/reference/interfaces/Configuration.html for all available options
     let configuration = {
-        selector: '.barcode-scanner',
+        selector: '.host-element',
         frameSource: {
             resolution: 'full-hd'
         },
