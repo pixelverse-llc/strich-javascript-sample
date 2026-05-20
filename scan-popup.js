@@ -2,7 +2,7 @@
  * Import STRICH SDK via ES6 import clause. It is recommended to pin a specific version, especially for
  * business-critical applications.
  */
-import {StrichSDK, PopupScanner} from "https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.15.0";
+import {StrichSDK, PopupScanner} from "https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.16.0";
 
 try {
     await StrichSDK.initialize('<your license key>');
